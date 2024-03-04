@@ -7,47 +7,79 @@ using namespace std;
 #define log(x) cout << x << endl;
 
 class Jugador{
-    /*
-        Agrega propiedades para guardar la vida(número entero), ataque(número entero) y nombre del jugador.
-        Agrega una propiedad para guardar el jugador que lo atacó por última vez.
-    */
+    public:
+
+    int vida;
+    int* ataque;
+    string nombre;
+    string ultimoatacante;
+
     
-    Jugador(); 
-    Jugador(/* agrega parámetros para asignar hp, ataque y nombre */); 
+    Jugador();  
+    Jugador(int vida, int ataque, string nombre); 
     
-    void atacar(/* agregar parámetros para atacar a otro jugador*/); 
+    void atacar(string ultimoatacante); 
 };
 
 int main()
 {
-    srand(time(0));  // Seed para generar valores aleatorios
+    srand(time(0));
+    Jugador jugador1(90,15, "Persona x");
+    Jugador jugador2(150,10, "Persona y");
     
-    /*
-        Crear al menos 2 jugadores con diferentes nombres, vida y ataque. 
-        Los jugadores deben atacarse entre sí, tomando turnos, hasta que uno pierda toda su vida.
-        En cuanto la vida del jugador se reduzca a 0 el programa muestra al ganador y se termina. 
-        No importa quien ataca primero.
-    */
+    if(jugador1.vida!=0 && jugador2.vida!=0)
+    {
+    jugador1.atacar(string jugador2);
+    jugador2.atacar(string jugador1);
+    }if jugador1.vida!=0{
+
+        cout<<"el jugador 1 ha ganado"<<endl;
+    }if jugador2.vida!=0{
+        cout<<"el jugador 2 ha ganado"<<endl;
+    }
+
 
     return 0;
 }
 
 Jugador::Jugador(){
-    /*
-        Asignar 100 a hp y 5 a attack como valores default.
-        Asignar 'No definido' al nombre como default.
-    */
+    vida=100;
+    ataque=5;
+    nombre="no definido";
 }
 
-Jugador::Jugador(/* Agrega parámetros para asignar hp, ataque y nombre*/){
-    /*
-        Asignar los parámetros recibidos a las propiedades del objeto.
-        No se pueden asignar valores negativos a hp y attack.
-        Máximo 200 hp y 20 attack
-    */
+Jugador::Jugador(int vida, int ataque, string nombre){
+   cout<<"Nombre: "<<endl;
+   cin>>nombre;
+
+   cout<<"Vida: "<<endl;
+   cin >> vida;
+    if(vida<1){
+    cout<<"No se pueden asignar valores negativos."<<endl;
+   }if(vida>200){
+    cout<<"No se puede asignar más de 200."<<endl;
+   }
+
+   cout<<"Ataque: "<<endl;
+   cin >> ataque;
+
+    if(jugador.atacar<1){
+    cout<<"No se pueden asignar valores negativos."<<endl;
+   }if(atacar>20){
+    cout<<"No se puede asignar más de 20."<<endl;
+   }
+  
 }
 
-void Jugador::atacar(/* Agregar parámetros para atacar a otro Jugador */){
+void Jugador::atacar(string ultimoatacante){
+    
+    int x = rand() % 1000; 
+    jugador1.vida=jugador.vida-ultimoatacante.ataque;
+
+    cout << jugador1.nombre<< "atacó a "<<ultimoatacante<<" e hizo "<< jugador1.ataque << " de daño, vida restante de " << ultimoatacante.vida << " =" << vida<<endl;
+
+     int x = rand() % 1000; 
+    ultimoatacante.vida=jugador.vida-jugador2.ataque;
     /*
         El jugador atacado(el que recibes como parámetro) pierde HP igual al ataque del jugador que ataca.
         Existe un 20% de probabilidad de que el ataque falle y no haga daño.
